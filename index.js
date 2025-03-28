@@ -13,23 +13,20 @@ const limiter = rateLimit({
 
 const app=express()
 
-app.use(limiter);
+
 const port=8000
 const client = createClient();
 
 client.on('error', err => console.log('Redis Client Error', err));
 
 await client.connect();
-
+app.use(limiter);
 
 
 app.get('/',(req,res)=>{
     res.send("hello from internbit")
 })
 
-const defaultStartTime='2024-01-01'
-const defaultEndTime='2024-03-28'
-const defaultMagnitude=4
 
 
   
